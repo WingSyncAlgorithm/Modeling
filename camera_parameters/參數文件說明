@@ -1,0 +1,15 @@
+camera_matrix_left
+distCoeffs_left
+camera_matrix_right
+distCoeffs_right
+R 旋轉矩陣
+T 平移向量
+E 本質矩陣
+F 基礎矩陣
+R_l 左圖旋轉矩陣
+R_r 右圖旋轉矩陣
+P_l 左圖投影矩陣
+P_r 右圖投影矩陣
+Q 視差轉換矩陣
+validPixROI1 矯正後圖像可以使用的區域
+validPixROI2 矯正後圖像可以使用的區域
