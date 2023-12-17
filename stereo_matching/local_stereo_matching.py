@@ -8,8 +8,8 @@ MAX_PARALLAX = 25 #最大視差
 WIN_SIZE = 5 #滑動窗口大小
 
 os.chdir('C:/Users/user/Desktop/vs code/局部立體匹配')
-left_image = np.asanyarray(Image.open(r'tryleft.jpg')) #左相機圖
-right_image = np.asanyarray(Image.open(r'tryright.jpg')) #右相機圖
+left_image = np.asanyarray(Image.open(r'left.jpg')) #左相機圖
+right_image = np.asanyarray(Image.open(r'right.jpg')) #右相機圖
 
 left_image = cv2.cvtColor(left_image,cv2.COLOR_BGR2GRAY) #轉為灰度圖
 right_image = cv2.cvtColor(right_image,cv2.COLOR_BGR2GRAY)
