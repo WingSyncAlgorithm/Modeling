@@ -29,6 +29,7 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
                 matrices: 包含了矩陣標題以及矩陣的字典
         """
         matrices = {}
+        current_matrix_lines = []
 
         with open(file_path, 'r') as file:
             for line in file:
@@ -39,11 +40,20 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
 
                 if line.endswith(':'):
                     current_title = line[:-1]  # 把標題後的冒號刪除
+                    current_matrix_lines = []
                 elif line.endswith(']'):
+                    current_matrix_lines.append(line)
                     # 提取出數字，並轉換成 float
-                    row_data = list(map(float, line.strip('[]').split()))
+                    row_data = list(
+                        map(float, ' '.join(current_matrix_lines).strip(
+                            '[]').split()))
                     matrices[current_title] = matrices.get(current_title,
                                                            []) + [row_data]
+                    current_matrix_lines = []
+                else:
+                    # 當行結尾不是':'或']'的時候，先把行存起來，等到下一次再合併，解決同一行換行問題
+                    current_matrix_lines.append(line)
+
         # 把 matrices 中矩陣的型態從 list 轉換成 numpy array
         matrices = {key: np.array(value) for key, value in matrices.items()}
         return matrices
@@ -77,5 +87,7 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
                                          rotation_right, projection_right,
                                          left_image.shape[1::-1], cv2.CV_32FC1)
     rect_right_image = cv2.remap(right_image, map1, map2, cv2.INTER_CUBIC)
+
+    print(left_image.shape[1::-1])
 
     return rect_left_image, rect_right_image
