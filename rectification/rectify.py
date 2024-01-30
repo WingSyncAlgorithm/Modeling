@@ -97,19 +97,6 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
 rect_left_image, rect_right_image = rectify_images(
     'camera_parameters.txt', 'left4.jpg', 'right4.jpg')
 
-# Display original images
-left_image = cv2.imread('left4.jpg')
-right_image = cv2.imread('right4.jpg')
-
-plt.subplot(221), plt.imshow(cv2.cvtColor(
-    left_image, cv2.COLOR_BGR2RGB)), plt.title('Left Image')
-plt.subplot(222), plt.imshow(cv2.cvtColor(
-    right_image, cv2.COLOR_BGR2RGB)), plt.title('Right Image')
-
-# Display rectified images
-plt.subplot(223), plt.imshow(cv2.cvtColor(rect_left_image,
-                                          cv2.COLOR_BGR2RGB)), plt.title('Rectified Left Image')
-plt.subplot(224), plt.imshow(cv2.cvtColor(rect_right_image,
-                                          cv2.COLOR_BGR2RGB)), plt.title('Rectified Right Image')
-
-plt.show()
+# Save the rectified images
+cv2.imwrite('rectified_left.jpg', rect_left_image)
+cv2.imwrite('rectified_right.jpg', rect_right_image)
