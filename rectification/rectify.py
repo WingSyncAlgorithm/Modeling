@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def rectify_images(camera_matrix_path, left_image_path, right_image_path):
@@ -95,7 +94,7 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
 
 
 rect_left_image, rect_right_image = rectify_images(
-    'camera_parameters.txt', 'left4.jpg', 'right4.jpg')
+    'camera_parameters.txt', 'lefttest.jpg', 'righttest.jpg')
 
 # Save the rectified images
 cv2.imwrite('rectified_left.jpg', rect_left_image)
