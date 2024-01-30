@@ -14,7 +14,7 @@ def calibrate_stereo_camera():
                                translation vector, essential matrix, fundamental matrix
     """
 
-    CHECKER_BOARD = (12, 8)  # 棋盤格內角點(格子長、寬各自減一)
+    CHECKER_BOARD = (6, 9)  # 棋盤格內角點(格子長、寬各自減一)
     criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
     object_points = np.zeros((CHECKER_BOARD[0] * CHECKER_BOARD[1], 3),
