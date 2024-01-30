@@ -1,19 +1,20 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def rectify_images(camera_matrix_path, left_image_path, right_image_path):
     """相片校正
-    
+
     Args:
         camera_matrix_path: 相機參數.txt的路徑
         left_image_path: 左圖的路徑
         right_image_path: 右圖的路徑
-    
+
     Returns:
         rect_left_image: 校正後的左圖
         rect_right_image: 校正後的右圖
-    
+
     """
 
     left_image = cv2.imread(left_image_path)
@@ -21,10 +22,10 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
 
     def read_matrices_from_txt(file_path):
         """讀取相機參數.txt裡面的矩陣
-        
+
             Arg:
                 file_path: txt檔的路徑
-                
+
             Return:
                 matrices: 包含了矩陣標題以及矩陣的字典
         """
@@ -91,3 +92,24 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
     print(left_image.shape[1::-1])
 
     return rect_left_image, rect_right_image
+
+
+rect_left_image, rect_right_image = rectify_images(
+    'camera_parameters.txt', 'left4.jpg', 'right4.jpg')
+
+# Display original images
+left_image = cv2.imread('left4.jpg')
+right_image = cv2.imread('right4.jpg')
+
+plt.subplot(221), plt.imshow(cv2.cvtColor(
+    left_image, cv2.COLOR_BGR2RGB)), plt.title('Left Image')
+plt.subplot(222), plt.imshow(cv2.cvtColor(
+    right_image, cv2.COLOR_BGR2RGB)), plt.title('Right Image')
+
+# Display rectified images
+plt.subplot(223), plt.imshow(cv2.cvtColor(rect_left_image,
+                                          cv2.COLOR_BGR2RGB)), plt.title('Rectified Left Image')
+plt.subplot(224), plt.imshow(cv2.cvtColor(rect_right_image,
+                                          cv2.COLOR_BGR2RGB)), plt.title('Rectified Right Image')
+
+plt.show()
