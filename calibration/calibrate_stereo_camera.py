@@ -26,8 +26,8 @@ def calibrate_stereo_camera():
     img_points_left = []
     img_points_right = []
 
-    images_left_all = sorted(glob.glob('left\\*.jpg'))
-    images_right_all = sorted(glob.glob('right\\*.jpg'))
+    images_left_all = sorted(glob.glob('left1\\*.jpg'))
+    images_right_all = sorted(glob.glob('right1\\*.jpg'))
 
     for image_left_one, image_right_one in zip(images_left_all,
                                                images_right_all):
