@@ -21,7 +21,7 @@ def calibrate_stereo_camera():
     object_points = np.zeros((CHECKER_BOARD[0] * CHECKER_BOARD[1], 3),
                              np.float32)
     object_points[:, :2] = np.mgrid[0:CHECKER_BOARD[0],
-                                    0:CHECKER_BOARD[1]].T.reshape(-1, 2)
+                                    0:CHECKER_BOARD[1]].T.reshape(-1, 2)*29
 
     real_world_points = []  # 儲存世界座標系角點
     img_points_left = []
