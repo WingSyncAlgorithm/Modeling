@@ -2,19 +2,20 @@ import numpy as np
 import cv2 as cv
 import glob
 
+
 def calibrate_stereo_camera():
     """立體視覺標定
-    
+
     輸入:
         left資料夾: 左相機的棋盤格jpg檔
         right資料夾: 右相機的棋盤格jpg檔
-    
+
     輸出:
         camera_parameters.txt: 包含 camera matrix, distortion coefficients matrix, rotation matrix,
                                translation vector, essential matrix, fundamental matrix
     """
 
-    CHECKER_BOARD = (12, 8)  # 棋盤格內角點(格子長、寬各自減一)
+    CHECKER_BOARD = (6, 9)  # 棋盤格內角點(格子長、寬各自減一)
     criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
     object_points = np.zeros((CHECKER_BOARD[0] * CHECKER_BOARD[1], 3),
@@ -118,5 +119,6 @@ def calibrate_stereo_camera():
     print(F, file=f)
 
     f.close()
-    
+
+
 calibrate_stereo_camera()
