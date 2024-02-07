@@ -94,7 +94,7 @@ def rectify_images(camera_matrix_path, left_image_path, right_image_path):
 
 
 rect_left_image, rect_right_image = rectify_images(
-    'camera_parameters.txt', 'left10.jpg', 'right10.jpg')
+    'camera_parameters.txt', 'left_image.jpg', 'right_image.jpg')
 
 # Save the rectified images
 cv2.imwrite('rectified_left.jpg', rect_left_image)
